@@ -5,12 +5,13 @@
 const app = express();
 const cors = require('cors');
 const port =process.env.PORT 
+const userRuote=require('./routing/user-routing');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
-
+app.use('/user',userRuote)
 
 
 app.listen(port,()=>{
