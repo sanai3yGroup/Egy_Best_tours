@@ -1,7 +1,8 @@
 const User =require('.././module/User');
-const ApiError=require('.././Utilites/ApiError')
+const ApiError=require('.././Utilites/ApiError');
 const bcrypt =require('bcrypt');
-
+const jwt =require('jsonwebtoken');
+const SECRET_KEY=process.env.SECRET_KEY
 exports.createUser=async(req,res,next)=>{
  const password=req.body.password;
   const hashPassword= await bcrypt.hash("password",10);
@@ -13,14 +14,15 @@ exports.createUser=async(req,res,next)=>{
 
 exports.login=async (req, res,next)=>
 {
-const user = await User.findOne(req.body.email);
+const user = await User.findOne({email:req.body.email});
 if(!user) return next(new ApiError(404, "User not registered"));
 const valPassword= await bcrypt.compare(req.body.password, user.password);
 if(!valPassword) return next( new ApiError(402,"invalid password"));
+const token= await jwt.sign(user.email,SECRET_KEY)
 res.json({
   statusCode:200,
   message:"the user is aouthrized",
-  data:user
+  token:token
 })
 }
 

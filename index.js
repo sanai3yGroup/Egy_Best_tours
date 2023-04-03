@@ -6,7 +6,7 @@ const app = express();
 const cors = require('cors');
 const port =process.env.PORT 
 const conect =require('./configuration/conctionDb')
-
+const glopalError=require('./middlewares/errorMiddlare')
 conect();
 
 const userRuote=require('./routing/user-routing');
@@ -16,6 +16,18 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 
 app.use('/user',userRuote)
+
+
+// hundel glopal error un project ////
+app.all((req,res,next)=>{
+    next(404,`can't finde this route${req.originalUrl} `)
+});
+
+app.use(glopalError)
+
+
+// 
+
 
 
 app.listen(port,()=>{
