@@ -7,7 +7,7 @@ const{
     getUser,
     updateUser,
     changePassword
-}=require('../serves/userServes');
+}=require('../Services/userServes');
 
 
 // get user by id

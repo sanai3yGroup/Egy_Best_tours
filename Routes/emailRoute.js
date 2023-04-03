@@ -2,7 +2,7 @@ const router=require('express').Router();
 const {
 getMails,
 creatMail,  
-}=require('../serves/emailServes')
+}=require('../Services/emailServes')
 
 
 

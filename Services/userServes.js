@@ -1,4 +1,4 @@
-const User =require('../module/User');
+const User =require('../Models/User');
 const ApiError=require('../Utilites/ApiError');
 const bcrypt =require('bcrypt');
 const jwt =require('jsonwebtoken');

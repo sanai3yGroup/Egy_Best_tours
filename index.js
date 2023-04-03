@@ -16,8 +16,8 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
-const userRuote=require('./routing/userRoute');
-const mailRoute=require('./routing/emailRoute');
+const userRuote=require('./Routes/userRoute');
+const mailRoute=require('./Routes/emailRoute');
 
 
 
