@@ -1,5 +1,5 @@
-const User =require('.././module/User');
-const ApiError=require('.././Utilites/ApiError');
+const User =require('../module/User');
+const ApiError=require('../Utilites/ApiError');
 const bcrypt =require('bcrypt');
 const jwt =require('jsonwebtoken');
 const SECRET_KEY=process.env.SECRET_KEY
