@@ -5,6 +5,10 @@
 const app = express();
 const cors = require('cors');
 const port =process.env.PORT 
+const conect =require('./configuration/conctionDb')
+
+conect();
+
 const userRuote=require('./routing/user-routing');
 
 app.use(express.json());

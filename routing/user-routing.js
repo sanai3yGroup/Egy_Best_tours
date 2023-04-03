@@ -21,7 +21,7 @@ router.put('/:id',updateUser);
 
 // change password 
 router.put('/cangePassword/:id',changePassword)
-
+router.post('/',createUser)
 
 
 
