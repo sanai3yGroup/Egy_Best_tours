@@ -22,7 +22,8 @@ const token= await jwt.sign(user.email,SECRET_KEY)
 res.json({
   statusCode:200,
   message:"the user is aouthrized",
-  token:token
+  token:token,
+  id:user._id
 })
 }
 
@@ -34,7 +35,7 @@ exports.getUser=async(req, res, next)=>{
   
      const user =await User.findById(req.params.id);
      res.json({
-      statuCode:200,
+      statusCode:200,
       data:user
      })
   }catch(e){
