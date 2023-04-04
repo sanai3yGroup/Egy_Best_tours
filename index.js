@@ -1,5 +1,4 @@
  const express= require('express');
- const bodyParser = require('body-parser')
  const dotenv=require('dotenv');
  dotenv.config({path:"config.env"})
 const app = express();
@@ -7,23 +6,30 @@ const cors = require('cors');
 const port =process.env.PORT ;
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
-
 // conect to database
 conect();
 
 // middlewares 
-app.use(bodyParser.json());
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
 const userRuote=require('./Routes/userRoute');
 const mailRoute=require('./Routes/emailRoute');
 const tripsRoute= require('./Routes/tripCustomRoute');
+const packageRoute= require('./Routes/packageRoute');
+const categoryRoute= require('./Routes/categoryRoute');
+const locationRoute= require('./Routes/locationRoute');
+
 
 
 app.use('/user',userRuote);
 app.use('/mail',mailRoute);
 app.use('/trips',tripsRoute);
+app.use('/package',packageRoute);
+app.use('/category',categoryRoute);
+app.use('/location',locationRoute);
+
+
 
 // hundel glopal error un project ////
 app.all((req,res,next)=>{
