@@ -11,7 +11,7 @@ const{
 
 
 router.get('/:pagNumber',getAlltrips);
-router.get('/:id',getTrip);
+router.get('/getById/:id',getTrip);
 router.delete('/:id',deleteTrip);
 router.post('/',createTrips);
 // router.get('/searchTrips/:title',searchTrips);

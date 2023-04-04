@@ -11,7 +11,7 @@ exports.searchTrips = async (req, res, next) => {
 exports.getAlltrips = async (req, res, next) => {
   try {
     const pagNumber = +req.params.pagNumber || 1;
-    const limit = 4;
+    const limit = 10;
     const skip = (pagNumber - 1) * limit;
     const trips = await Trip.find().skip(skip).limit(limit);
     const numOfPage = Math.ceil((await Trip.find().count()) / limit);
@@ -32,6 +32,7 @@ exports.deleteTrip = async (req, res, next) => {
   try {
     const id = req.params.id;
     const trip = await Trip.findByIdAndDelete(id);
+    if(!trip) return next(new ApiError(404,'THE TRIPE IS NOT FOUND'))
     res.json({
       statusCode: 200,
       message: "the trip has been deleted",
@@ -59,6 +60,7 @@ exports.getTrip = async (req, res, next) => {
   try {
     const id = req.params.id;
     const trip = await Trip.findById(id);
+    if(!trip) return next(new ApiError(404,"THE TRIPE IS NOT FOUND"))
     res.json({
       statusCode: 200,
       message: "you get a trip by id",
