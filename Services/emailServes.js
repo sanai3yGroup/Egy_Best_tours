@@ -1,4 +1,4 @@
-const Mail = require("../module/Mailes");
+const Mail = require("../Models/Mailes");
 const ApiError = require("../Utilites/ApiError");
 exports.creatMail = async (req, res, next) => {
   try {
