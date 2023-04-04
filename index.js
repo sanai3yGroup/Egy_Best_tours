@@ -18,11 +18,12 @@ app.use(express.urlencoded({extended:true}));
 app.use(cors());
 const userRuote=require('./Routes/userRoute');
 const mailRoute=require('./Routes/emailRoute');
-
+const tripsRoute= require('./Routes/tripCustomRoute');
 
 
 app.use('/user',userRuote);
 app.use('/mail',mailRoute);
+app.use('/trips',tripsRoute);
 
 // hundel glopal error un project ////
 app.all((req,res,next)=>{

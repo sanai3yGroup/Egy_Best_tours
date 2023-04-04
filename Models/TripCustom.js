@@ -12,6 +12,7 @@ const tripSchema = mongoose.Schema({
   },
   nationality: {
     type: String,
+    
   },
   guests: {
     numberOfAdults: { type: Number },
