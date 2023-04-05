@@ -19,7 +19,8 @@ const packageSechema=mongoose.Schema({
         price:Number,
         category:{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
         pick_drop:String,
-        availablitiy:String
+        availablitiy:String,
+        reviewes:[{type:mongoose.Schema.Types.ObjectId,ref: 'Review'}]
 })
 
 module.exports=mongoose.model('Package',packageSechema)
