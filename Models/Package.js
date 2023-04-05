@@ -11,14 +11,13 @@ const packageSechema=mongoose.Schema({
         images:{
             type:Array,
         },
-        date:Date,
         highlights:Array,
         inclusions:Array,
         exclusions:Array,
         hotelActivities:Array,
-        location:{ type: Schema.Types.ObjectId, ref: 'Location' },
+        location:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Location' }],
         price:Number,
-        category:{ type: Schema.Types.ObjectId, ref: 'Category' },
+        category:{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
         pick_drop:String,
         availablitiy:String
 })

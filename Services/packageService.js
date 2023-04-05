@@ -8,18 +8,47 @@ exports.createPackage=async(req,res,next)=>{
       throw 'error body it is empty'
     }
  const package =await Package.create(req.body);
-  res.json(package)
+ res.json({
+  statusCode: 200,
+  message: "you create a Package",
+  data: package,
+});
   }
   catch(err)
   {
     next(new ApiError(500,err))
   }
 }
+exports.getPackage=async(req,res,next)=>
+{
+  try {
+    const id = req.params.id;
+    const package = await Package.findById(id);
+    if(!package) return next(new ApiError(404,"THE Package IS NOT FOUND"))
+    res.json({
+      statusCode: 200,
+      message: "you get a Package by id",
+      data: package,
+    });
+  } catch (err) {
+    next(new ApiError(500, "the server returned an error"));
+  }
+}
 exports.getAllPackages=async(req,res,next)=>
 {
   try{
-    const packages =await Package.find();
-    res.json(packages)
+    const pageNumber =req.query.pageNumber || 1;
+    const limit = 15;
+    const skip = (pageNumber - 1) * limit;
+    const packages = await Package.find().skip(skip).limit(limit);
+   
+    if (packages.length <= 0)
+      return next(new ApiError(404, "not found any trips"));
+    res.json({
+      statusCode: 200,
+      message: "you have all packages successfully",
+      data: packages,
+    });
   }
   catch(err)
   {
@@ -43,7 +72,9 @@ exports.updatePackage=async (req, res, next)=>
 exports.deletePackage=async (req, res, next)=>
 {
   try{
-  var deletedItem=await Package.deleteOne({id:req.params.id})
+  var deletedItem=await Package.findByIdAndDelete(req.params.id)
+  if(!deletedItem)
+  return next(new ApiError(404,'THE TRIPE IS NOT FOUND'))
   res.json({statusCode:200,
     message:"the package deleted",
     data:deletedItem})
