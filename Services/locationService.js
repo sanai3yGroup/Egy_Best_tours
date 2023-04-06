@@ -47,7 +47,7 @@ exports.getAllLocation=async(req,res,next)=>
     res.json({
       statusCode: 200,
       message: "you have all locations successfully",
-      data: location,
+      data: locations,
     });
   }
   catch(err)
