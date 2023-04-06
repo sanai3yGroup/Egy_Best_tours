@@ -15,7 +15,7 @@ exports.getAlltrips = async (req, res, next) => {
     const skip = (pagNumber - 1) * limit;
     const trips = await Trip.find().skip(skip).limit(limit);
     const numOfPage = Math.ceil((await Trip.find().count()) / limit);
-    if (trips.length = 0)
+    if (trips.length <= 0)
       return next(new ApiError(404, "not found any trips"));
     res.json({
       statusCode: 200,

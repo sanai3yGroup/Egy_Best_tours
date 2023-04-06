@@ -15,8 +15,7 @@ exports.getAllContact = async (req, res, next) => {
     const skip = (pagNumber - 1) * limit;
     const contacts = await Contact.find().skip(skip).limit(limit);
     const numOfPage = Math.ceil((await Contact.find().count()) / limit);
-    if (contacts.length = 0)
-      return next(new ApiError(404, "not found any Contact"));
+    if (contacts.length <= 0)return next(new ApiError(404, "not found any Contact"));
     res.json({
       statusCode: 200,
       numOfPage: numOfPage,
