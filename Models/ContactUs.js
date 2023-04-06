@@ -9,6 +9,10 @@ const contactSchema = mongoose.Schema({
   message: {
     type: String,
   },
+  read:{
+    type:Boolean,
+    default:false,
+  }
 });
 
 module.exports = mongoose.model("Contact", contactSchema);
