@@ -5,7 +5,8 @@ const{getAllCategory,
     getCategory,
     createCategory,
     updateCategory,
-    deleteCategory
+    deleteCategory,
+    searchCategory
 }=require('../Services/categoryService');
 // get all locations 
 router.get('/',getAllCategory);
@@ -16,7 +17,9 @@ router.post('/create',createCategory);
 // update location
 router.put('/:id',updateCategory);
 // delete location
-router.delete('/:id',deleteCategory)
+router.delete('/:id',deleteCategory);
+
+router.get('/search/:title',searchCategory);
 
 
 

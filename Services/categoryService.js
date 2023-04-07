@@ -86,3 +86,20 @@ exports.deleteCategory=async (req, res, next)=>
     next(new ApiError(500,"the server occurred an error"))
   }
 }
+
+exports.searchCategory=async(req,res, next)=>{
+  try{
+    const title= req.params.title
+    const data=await Category.find({name:{
+      $regex:title
+    }});
+    if(data <= 0) return next(new ApiError(404,'no data matching this title '))
+    res.json({
+      statusCode:200,
+      message:'you get search results',
+      data:data
+    })
+  }catch(e){
+    next(new ApiError(500,"the server encountered an error"));
+  }
+}
