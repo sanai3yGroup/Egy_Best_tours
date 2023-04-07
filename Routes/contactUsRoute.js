@@ -4,7 +4,7 @@ const{
     createContact,
     getContact,
     deleteContact,
-    searchTrips,
+    updateTrips,
 }=require('../Services/contactUsServes')
 
 
@@ -14,7 +14,7 @@ router.get('/:pagNumber',getAllContact);
 router.get('/getById/:id',getContact);
 router.delete('/:id',deleteContact);
 router.post('/',createContact);
-// router.get('/searchTrips/:title',searchTrips);
+router.put('/:id',updateTrips);
 
 
 module.exports=router;

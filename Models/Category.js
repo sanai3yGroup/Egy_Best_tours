@@ -3,6 +3,7 @@ const CategorySchema= mongoose.Schema({
     name:{
         type:String,
         upperCase:true,
+        trim:true,
     }
 
 })

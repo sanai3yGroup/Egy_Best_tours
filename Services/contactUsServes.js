@@ -69,3 +69,18 @@ exports.getContact = async (req, res, next) => {
     next(new ApiError(500, "the server returned an error"));
   }
 };
+
+exports.updateTrips= async (req, res, next )=>{
+  try{
+    const data= req.body;
+    const  id =req.params.id;
+      const contact = await Contact.findByIdAndUpdate(id,data);
+      if(!contact) return next(new ApiError(404,"the contact not updated"));
+      res.json({
+        statusCode:200,
+        message:"the contact has been updated"
+      })
+  }catch(err){
+    next(new ApiError(500, "the server returned an error"))
+  }
+}
