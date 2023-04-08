@@ -23,7 +23,10 @@ exports.getPackage=async(req,res,next)=>
 {
   try {
     const id = req.params.id;
-    const package = await Package.findById(id);
+    const package = await Package.findById(id)
+    .populate('location')
+    .populate('category')
+    // .populate('reviewes')
     if(!package) return next(new ApiError(404,"THE Package IS NOT FOUND"))
     res.json({
       statusCode: 200,
@@ -40,7 +43,11 @@ exports.getAllPackages=async(req,res,next)=>
     const pageNumber =req.query.pageNumber || 1;
     const limit = 15;
     const skip = (pageNumber - 1) * limit;
-    const packages = await Package.find().skip(skip).limit(limit);
+    const packages = await Package.find()
+    .populate('location')
+    .populate('category')
+    // .populate('reviewes')
+    .skip(skip).limit(limit);
     const numOfPage=   Math.ceil(( await Package.find().count()) / limit) ;
    
     if (packages.length <= 0)
