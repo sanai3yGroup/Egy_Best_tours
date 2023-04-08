@@ -20,6 +20,7 @@ const packageRoute= require('./Routes/packageRoute');
 const categoryRoute= require('./Routes/categoryRoute');
 const locationRoute= require('./Routes/locationRoute');
 const contactRoute= require('./Routes/contactUsRoute')
+const tripRoute= require('./Routes/tripRoute')
 
 app.use('/user',userRuote);
 app.use('/mail',mailRoute);
@@ -28,6 +29,7 @@ app.use('/package',packageRoute);
 app.use('/category',categoryRoute);
 app.use('/location',locationRoute);
 app.use('/contact',contactRoute);
+app.use('/trip',tripRoute);
 
 
 
