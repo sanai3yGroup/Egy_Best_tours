@@ -7,7 +7,7 @@ creatMail,
 
 
 
-router.get('/',getMails);
+router.post('/post',getMails);
 router.post('/',creatMail);
 
 
