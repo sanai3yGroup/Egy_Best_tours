@@ -1,6 +1,6 @@
 
 const router= require('express').Router();
-
+const upload= require('../Utilites/Multer');
 const{getPackage,
     getAllPackages,
     deletePackage,
@@ -12,7 +12,7 @@ router.get('/',getAllPackages);
 // get user by id
 router.get('/:id',getPackage);
 // createPackage
-router.post('/create',createPackage);
+router.post('/create',upload.array('image'),createPackage);
 // updatePackage
 router.put('/:id',updatePackage);
 // delete pacakge 
