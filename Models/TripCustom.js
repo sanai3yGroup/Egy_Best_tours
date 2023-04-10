@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const tripSchema = mongoose.Schema({
+const tripCustomSchema = mongoose.Schema({
   name: {
     type: String,
   },
@@ -34,4 +34,4 @@ const tripSchema = mongoose.Schema({
     type: String,
   },
 });
-module.exports = mongoose.model("Trip", tripSchema);
+module.exports = mongoose.model("CustomTrip", tripCustomSchema);
