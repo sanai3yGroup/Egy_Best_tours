@@ -3,7 +3,7 @@
  dotenv.config({path:"config.env"})
 const app = express();
 const cors = require('cors');
-const port =process.env.PORT ;
+const port =process.env.PORT ||9000;
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
 // conect to database
@@ -46,7 +46,7 @@ app.use(glopalError);
 
 
 app.listen(port,()=>{
-    console.log("the server is listening")
+    console.log("the server is listening ON"+port)
 });
 
 app.get('/',(req, res,next)=>{

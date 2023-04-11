@@ -2,7 +2,7 @@ const multer  = require('multer');
 
 const storage =  multer.diskStorage({})
 const  fileFillter= (req, file, cd) => {
-  if (file.mimetype === "image/jpeg") {
+  if (file.mimetype === "image/jpg") {
     cd(null, true);
   } else {
     cd(new Error("please uplaod jpg file"), false);

@@ -3,6 +3,7 @@ const ApiError=require('../Utilites/ApiError');
 const bcrypt =require('bcrypt');
 const jwt =require('jsonwebtoken');
 const SECRET_KEY=process.env.SECRET_KEY
+
 exports.createUser=async(req,res,next)=>{
  const password=req.body.password;
   const hashPassword= await bcrypt.hash("password",10);
@@ -26,7 +27,6 @@ res.json({
   id:user._id
 })
 }
-
 
 exports.getUser=async(req, res, next)=>{
 

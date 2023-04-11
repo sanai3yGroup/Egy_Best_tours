@@ -5,7 +5,8 @@ const{getAllLocation,
     getLocation,
     createLocation,
     updateLocation,
-    deleteLocation
+    deleteLocation,
+    searchLocation
 }=require('../Services/locationService');
 // get all locations 
 router.get('/',getAllLocation);
@@ -17,7 +18,7 @@ router.post('/create',createLocation);
 router.put('/:id',updateLocation);
 // delete location
 router.delete('/:id',deleteLocation)
-
+router.get('/search/:location',searchLocation)
 
 
 

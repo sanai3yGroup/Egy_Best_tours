@@ -19,6 +19,7 @@ exports.createLocation=async(req,res,next)=>{
     next(new ApiError(500,err))
   }
 }
+
 exports.getLocation=async(req,res,next)=>
 {
   try {
@@ -34,6 +35,7 @@ exports.getLocation=async(req,res,next)=>
     next(new ApiError(500, "the server returned an error"));
   }
 }
+
 exports.getAllLocation=async(req,res,next)=>
 {
   try{
@@ -82,5 +84,23 @@ exports.deleteLocation=async (req, res, next)=>
   catch(e)
   {
     next(new ApiError(500,"the server occurred an error"))
+  }
+}
+
+exports.searchLocation= async(req, res,next)=>{
+  try{
+    const location = req.params.location.toLowerCase();
+    const resulteSearch =await Location.find({name:{
+       $regex:location
+    }
+    });
+    if(resulteSearch <= 0) return next(new ApiError(404,'no data matching this LOCATION  '))
+    res.json({
+      statusCode:200,
+      message:'you get search results',
+      data:resulteSearch
+    })
+  }catch(err){
+    next(new ApiError(500,"the server occurred an error")) 
   }
 }
