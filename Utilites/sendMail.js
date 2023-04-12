@@ -135,7 +135,7 @@ function sendMessageTouser(email,data) {
     A preheader is the short summary text that follows the subject line when an email is viewed in the inbox.
   </div>
 
-
+<p>${data}</p>
 
 </body>
 </html>

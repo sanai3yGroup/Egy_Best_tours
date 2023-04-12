@@ -10,7 +10,7 @@ exports.createUser=async(req,res,next)=>{
   const hashPassword= await bcrypt.hash("password",10);
   const user =await User.create({password :hashPassword,
     name:"ahmed ali",
-  email:"aliomran11@gmail.com",});
+  email:"aboalhassanabdo769@gmail.com",});
   res.json(user)
 }
 
@@ -55,7 +55,7 @@ exports.updateUser=async (req, res, next)=>
       data:user})
     }else{
       let password= await bcrypt.hash(req.body.password,10);
-      // console.log(password);
+
       const user = await User.findByIdAndUpdate(req.params.id,{...req.body,password:password});
     if(!user) return next(new ApiError(404,'the user not updated'));
     user.save()
@@ -71,14 +71,14 @@ exports.updateUser=async (req, res, next)=>
 
 }
 
-exports.changePassword=async(req, res, next )=>
+exports.forGetPassword=async(req, res, next )=>
 {
      try{
       const email= req.params.email;
-      const user= await User.findOne(email);
+      const user= await User.findOne({email:email});
       if(!user) return next(new ApiError(401, "User not authenticated"));
       let verifyNumber= Math.floor(Math.random() * 100000) + 1;
-      console.log(verifyNumber);
+      console.log(user);
       sendMail(user.email,verifyNumber);
       res.json({
         statusCode:200,
@@ -86,6 +86,6 @@ exports.changePassword=async(req, res, next )=>
         data:verifyNumber
       })
      }catch(err){
-      next(new ApiError(500,"the server occurred an error"))
+      next(new ApiError(500,err))
      }
 }

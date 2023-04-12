@@ -6,7 +6,7 @@ const{
     login,
     getUser,
     updateUser,
-    changePassword
+    forGetPassword
 }=require('../Services/userServes');
 
 
@@ -19,8 +19,8 @@ router.post('/login',login);
 // updateUser
 router.put('/:id',updateUser);
 
-// change password 
-router.put('/cangePassword/:email',changePassword)
+// for get  password   @TahaAhmedd look at here thankes for you 
+router.put('/forGetPassword/:email',forGetPassword);
 router.post('/',createUser)
 
 
