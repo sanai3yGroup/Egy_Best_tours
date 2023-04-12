@@ -2,8 +2,9 @@ const User =require('../Models/User');
 const ApiError=require('../Utilites/ApiError');
 const bcrypt =require('bcrypt');
 const jwt =require('jsonwebtoken');
+const sendMail= require('./../Utilites/sendMail');
 const SECRET_KEY=process.env.SECRET_KEY
-
+const {hashPassword} = require('./../Utilites/hashPassword');
 exports.createUser=async(req,res,next)=>{
  const password=req.body.password;
   const hashPassword= await bcrypt.hash("password",10);
@@ -46,11 +47,23 @@ next(new ApiError(500,'the error occurred server '))
 exports.updateUser=async (req, res, next)=>
 {
   try{
-    const user = await User.findByIdAndUpdate(req.params.id,req.body);
+    if(!req.body.password){
+      const user = await User.findByIdAndUpdate(req.params.id,req.body);
+      if(!user) return next(new ApiError(404,'the user not updated'));
+      res.json({statusCode:200,
+      message:"the user updated",
+      data:user})
+    }else{
+      let password= await bcrypt.hash(req.body.password,10);
+      // console.log(password);
+      const user = await User.findByIdAndUpdate(req.params.id,{...req.body,password:password});
     if(!user) return next(new ApiError(404,'the user not updated'));
+    user.save()
     res.json({statusCode:200,
     message:"the user updated",
     data:user})
+    }
+    
   }catch(e){
     next(new ApiError(500,"the server occurred an error"))
   }  
@@ -60,5 +73,19 @@ exports.updateUser=async (req, res, next)=>
 
 exports.changePassword=async(req, res, next )=>
 {
-     
+     try{
+      const email= req.params.email;
+      const user= await User.findOne(email);
+      if(!user) return next(new ApiError(401, "User not authenticated"));
+      let verifyNumber= Math.floor(Math.random() * 100000) + 1;
+      console.log(verifyNumber);
+      sendMail(user.email,verifyNumber);
+      res.json({
+        statusCode:200,
+        message:"you get verification number ",
+        data:verifyNumber
+      })
+     }catch(err){
+      next(new ApiError(500,"the server occurred an error"))
+     }
 }

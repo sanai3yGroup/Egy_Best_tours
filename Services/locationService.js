@@ -86,7 +86,7 @@ exports.deleteLocation=async (req, res, next)=>
     next(new ApiError(500,"the server occurred an error"))
   }
 }
-
+// make search  function @bassamnegm 
 exports.searchLocation= async(req, res,next)=>{
   try{
     const location = req.params.location.toLowerCase();

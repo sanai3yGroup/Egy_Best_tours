@@ -20,7 +20,7 @@ router.post('/login',login);
 router.put('/:id',updateUser);
 
 // change password 
-router.put('/cangePassword/:id',changePassword)
+router.put('/cangePassword/:email',changePassword)
 router.post('/',createUser)
 
 

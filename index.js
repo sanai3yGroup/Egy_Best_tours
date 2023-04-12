@@ -6,7 +6,9 @@ const cors = require('cors');
 const port =process.env.PORT ||9000;
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
+
 // conect to database
+
 conect();
 
 // middlewares 

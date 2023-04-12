@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 //  console.log(process.env.MAIL_PASSWORD);
 
 
-function sendMessageTouser(email,data,res) {
+function sendMessageTouser(email,data) {
 // console.log(data);
   const mailOption = {
     from: "egyptbesttours1@gmail.com",
