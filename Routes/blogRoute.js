@@ -7,12 +7,13 @@ const {
     deleteBlog,
     searchBlog
 }=require('../Services/blogService');
+const upload= require('../Utilites/Multer');
 
 router.get('/:pageNumber',getAllBlog);
 
 router.get(':id',getBlog);
 
-router.post('/',createBlog);
+router.post('/',upload.array('image'),createBlog);
 
 router.put('/:id',updateBlog);
 
