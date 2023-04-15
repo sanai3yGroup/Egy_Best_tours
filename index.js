@@ -2,6 +2,8 @@
  const dotenv=require('dotenv');
  dotenv.config({path:"config.env"})
 const app = express();
+var http = require('http');
+const server=http.createServer(app)
 const cors = require('cors');
 var port = normalizePort(process.env.PORT || '7000');
 const conect =require('./configuration/conctionDb');
@@ -67,7 +69,7 @@ app.use(glopalError);
 
 
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log("the server is listening ON"+port)
 });
 
