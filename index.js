@@ -1,18 +1,16 @@
  const express= require('express');
  const dotenv=require('dotenv');
- dotenv.config({path:"config.env"})
+ dotenv.config({path:"config.env"});
 const app = express();
 var http = require('http');
-const server=http.createServer(app)
+const server=http.createServer(app);
 const cors = require('cors');
 var port = normalizePort(process.env.PORT || '7000');
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
 
 // conect to database
-
 conect();
-
 // middlewares 
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
