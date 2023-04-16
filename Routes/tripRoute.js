@@ -8,7 +8,7 @@ const{getTrip,
     createTrip
 }=require('../Services/tripService');
 // get all packages 
-router.get('/',getAllTrips);
+router.get('/:pageNumber',getAllTrips);
 // get user by id
 router.get('/:id',getTrip);
 // createPackage
