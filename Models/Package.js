@@ -23,6 +23,7 @@ const packageSechema=mongoose.Schema({
         reviewes:[{type:mongoose.Schema.Types.ObjectId,ref: 'Review'}]
 })
 
+packageSechema.index({'$**': 'text'});
 module.exports=mongoose.model('Package',packageSechema)
 
 

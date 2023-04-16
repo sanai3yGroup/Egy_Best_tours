@@ -3,12 +3,24 @@ const blogsSchema=mongoose.Schema({
 title:{
     type:String,
 },
-text:{
+discription:{
     type:String,
 },
-images:{
-    type:Array,
-}
+content:{
+    type:Array
+},
+ pragraph:[{
+    header:{
+        type:String
+    },
+    text:{
+        type:String,
+    },
+    image:{
+        type:String,
+    }
+ }]
+
 });
 
 module.exports=mongoose.model('Blog',blogsSchema)

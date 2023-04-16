@@ -2,8 +2,10 @@
  const dotenv=require('dotenv');
  dotenv.config({path:"config.env"})
 const app = express();
+var http = require('http');
+const server=http.createServer(app)
 const cors = require('cors');
-const port =process.env.PORT ||9000;
+var port = normalizePort(process.env.PORT || '7000');
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
 
@@ -15,6 +17,26 @@ conect();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
+app.set('port', port);
+
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+  
+    if (isNaN(port)) {
+      // named pipe
+      return val;
+    }
+  
+    if (port >= 0) {
+      // port number
+      return port;
+    }
+  
+    return false;
+  }
+
+
 const userRuote=require('./Routes/userRoute');
 const mailRoute=require('./Routes/emailRoute');
 const tripsRoute= require('./Routes/tripCustomRoute');
@@ -47,7 +69,7 @@ app.use(glopalError);
 
 
 
-app.listen(port,()=>{
+server.listen(port,()=>{
     console.log("the server is listening ON"+port)
 });
 

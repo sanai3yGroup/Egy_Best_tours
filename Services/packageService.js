@@ -65,6 +65,32 @@
         next(new ApiError(500, err));
       }
     };
+    exports.getPackagesSerach = async (req, res, next) => {
+      try {
+        console.log(req.params.text)
+       
+        const packages = await Package.find({ $text: { $search:req.params.text }})
+          .populate("location")
+          .populate("category")
+        // const packages = await Package.find({'category.name':req.params.text})
+        //   .populate("location")
+        //   .populate("category").exec()
+          // .populate('reviewes')
+        const numOfPage = Math.ceil((await Package.find().count()) / 15);
+
+        if (packages.length <= 0)
+          return next(new ApiError(404, "not found any trips"));
+        res.json({
+          statusCode: 200,
+          numOfPage: numOfPage,
+          message: "you have all packages successfully",
+          data: packages,
+        });
+      } catch (err) {
+        next(new ApiError(500, err));
+      }
+    };
+
 
     exports.updatePackage = async (req, res, next) => {
       try {
