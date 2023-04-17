@@ -1,10 +1,19 @@
 const Blog= require('../Models/Blogs');
 const ApiError=require('../Utilites/ApiError');
-
+const { uploadImage } = require("../configuration/configCloudinary");
 exports.createBlog=async(req,res,next)=>{
 
   try{
- const blog =await Blog.create(req.body);
+    const files= req.files;
+    let img;
+   let arrImages=[];
+   let index=0
+for( let file of files ){
+  index ++
+  img=await uploadImage(file.path,index);
+  arrImages.push(img);
+}
+ const blog =await Blog.create({...req.body,images:arrImages});
  res.json({
   statusCode: 200,
   message: "you create a blog",

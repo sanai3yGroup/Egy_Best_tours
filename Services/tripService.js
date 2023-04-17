@@ -29,6 +29,7 @@ exports.createTrip=async(req,res,next)=>{
     next(new ApiError(500,err))
   }
 }
+
 exports.getTrip=async(req,res,next)=>
 {
   try {
@@ -45,6 +46,7 @@ exports.getTrip=async(req,res,next)=>
     next(new ApiError(500, "the server returned an error"));
   }
 }
+
 exports.getAllTrips=async(req,res,next)=>
 {
 // fixe isssue here @TahaAhmedd

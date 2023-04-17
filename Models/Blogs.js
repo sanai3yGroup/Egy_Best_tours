@@ -14,12 +14,12 @@ content:{
         type:String
     },
     text:{
-        type:String,
-    },
-    image:{
-        type:String,
+        type:Array,
     }
- }]
+ }],
+ images:{
+    type:Array,
+}
 
 });
 

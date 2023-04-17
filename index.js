@@ -43,7 +43,7 @@ const categoryRoute= require('./Routes/categoryRoute');
 const locationRoute= require('./Routes/locationRoute');
 const contactRoute= require('./Routes/contactUsRoute')
 const tripRoute= require('./Routes/tripRoute')
-
+const blogRoute= require('./Routes/blogRoute')
 app.use('/user',userRuote);
 app.use('/mail',mailRoute);
 app.use('/trips',tripsRoute);
@@ -52,8 +52,7 @@ app.use('/category',categoryRoute);
 app.use('/location',locationRoute);
 app.use('/contact',contactRoute);
 app.use('/trip',tripRoute);
-
-
+app.use('/blog',blogRoute);
 
 // hundel glopal error un project ////
 app.all((req,res,next)=>{

@@ -2,17 +2,17 @@ const multer  = require('multer');
 
 const storage =  multer.diskStorage({})
 const  fileFillter= (req, file, cd) => {
-  if (file.mimetype === "image/jpg") {
-    cd(null, true);
+// console.log(file.mimetype);
+  if (file.mimetype === "image/png") {
+    cd(new Error("please uplaod jpg or jpeg file"), false);
   } else {
-    cd(new Error("please uplaod jpg file"), false);
+    cd(null, true);
+ 
   }
 };
 
 
   const upload = multer({ storage: storage,
                           fileFilter:fileFillter,
-                          limits: {
-                            fileSize: 5 * 1024 * 1024,
-                          } });
+                          });
   module.exports=upload ;
