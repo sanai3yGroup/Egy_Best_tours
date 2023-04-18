@@ -20,7 +20,7 @@ router.post('/login',login);
 router.put('/:id',updateUser);
 
 // for get  password   @TahaAhmedd look at here thankes for you 
-router.put('/forGetPassword/:email',forGetPassword);
+router.get('/forGetPassword/:email',forGetPassword);
 router.post('/',createUser)
 
 
