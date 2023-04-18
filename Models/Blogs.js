@@ -14,7 +14,7 @@ content:{
         type:String
     },
     text:{
-        type:Array,
+        type:String,
     }
  }],
  images:{
