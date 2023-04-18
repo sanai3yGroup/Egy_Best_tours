@@ -49,7 +49,7 @@ exports.updateUser=async (req, res, next)=>
   try{
     if(!req.body.password){
       const user = await User.findByIdAndUpdate(req.params.id,{
-        email:req.body,
+        email:req.body.email,
        name:req.body.name});
       if(!user) return next(new ApiError(404,'the user not updated'));
       res.json({statusCode:200,
