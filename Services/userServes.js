@@ -84,7 +84,8 @@ exports.forGetPassword=async(req, res, next )=>
       res.json({
         statusCode:200,
         message:"you get verification number ",
-        data:verifyNumber
+        verifyNumber:verifyNumber,
+        id:user._id
       })
      }catch(err){
       next(new ApiError(500,err))
