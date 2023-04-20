@@ -1,4 +1,5 @@
 const router= require('express').Router();
+const upload= require('../Utilites/Multer');
 const {
     createBlog,
     getBlog,
@@ -7,13 +8,13 @@ const {
     deleteBlog,
     searchBlog
 }=require('../Services/blogService');
-const upload= require('../Utilites/Multer');
+
 
 router.get('/:pageNumber',getAllBlog);
 
 router.get(':id',getBlog);
 
-router.post('/',upload.array('image'),createBlog);
+router.post('/create',upload.array('image'),createBlog);
 
 router.put('/:id',updateBlog);
 

@@ -15,11 +15,11 @@ content:{
     },
     text:{
         type:String,
-    },
-    image:{
-        type:String,
     }
- }]
+ }],
+ images:{
+    type:Array,
+}
 
 });
 

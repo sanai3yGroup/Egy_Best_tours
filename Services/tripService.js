@@ -29,6 +29,7 @@ exports.createTrip=async(req,res,next)=>{
     next(new ApiError(500,err))
   }
 }
+
 exports.getTrip=async(req,res,next)=>
 {
   try {
@@ -45,14 +46,16 @@ exports.getTrip=async(req,res,next)=>
     next(new ApiError(500, "the server returned an error"));
   }
 }
+
 exports.getAllTrips=async(req,res,next)=>
 {
+// fixe isssue here @AliAbdo111
   try{
-    const pageNumber =req.query.pageNumber || 1;
+    const pageNumber =req.params.pageNumber || 1;
     const limit = 15;
     const skip = (pageNumber - 1) * limit;
     const trips = await Trip.find()
-    .populate('Category')
+    .populate({ path: 'package', select: 'title' })
     .skip(skip).limit(limit);
     const numOfPage=   Math.ceil(( await Trip.find().count()) / limit) ;
    

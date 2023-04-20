@@ -1,7 +1,7 @@
 // const { update } = require("../../AlmotakasesAcademy/Almota5asesProject/Controllers/UserCountroller");
 
     const cloudinary = require("cloudinary").v2;
-
+    let index=0
     conectStorage = async function () {
       await cloudinary.config({
         cloud_name: process.env.cloud_name,
@@ -10,14 +10,16 @@
       });
       console.log("connected to cloudinary");
     };
-    conectStorage();
-    exports.uploadImage = async (file) => {
+
+    exports.uploadImage = async (file,index) => {
+      conectStorage();
       return new Promise((resolve) => {
         cloudinary.uploader.upload(file, (err, res) => {
           if (err) return res.status(500).send("upload image error");
           resolve({
             img: res.secure_url,
             id: res.public_id,
+            index:index 
           });
         });
       });

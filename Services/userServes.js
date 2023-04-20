@@ -48,14 +48,15 @@ exports.updateUser=async (req, res, next)=>
 {
   try{
     if(!req.body.password){
-      const user = await User.findByIdAndUpdate(req.params.id,req.body);
+      const user = await User.findByIdAndUpdate(req.params.id,{
+        email:req.body.email,
+       name:req.body.name});
       if(!user) return next(new ApiError(404,'the user not updated'));
       res.json({statusCode:200,
       message:"the user updated",
       data:user})
     }else{
       let password= await bcrypt.hash(req.body.password,10);
-
       const user = await User.findByIdAndUpdate(req.params.id,{...req.body,password:password});
     if(!user) return next(new ApiError(404,'the user not updated'));
     user.save()
@@ -83,7 +84,8 @@ exports.forGetPassword=async(req, res, next )=>
       res.json({
         statusCode:200,
         message:"you get verification number ",
-        data:verifyNumber
+        verifyNumber:verifyNumber,
+        id:user._id
       })
      }catch(err){
       next(new ApiError(500,err))
