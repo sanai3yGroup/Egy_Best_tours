@@ -2,7 +2,6 @@ const Blog= require('../Models/Blogs');
 const ApiError=require('../Utilites/ApiError');
 
 exports.createBlog=async(req,res,next)=>{
-
   try{
  const blog =await Blog.create(req.body);
  res.json({
