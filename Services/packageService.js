@@ -107,8 +107,6 @@
         next(new ApiError(500, err));
       }
     };
-
-
     exports.updatePackage = async (req, res, next) => {
       try {
         const package = await Package.findByIdAndUpdate(req.params.id, req.body);
@@ -122,7 +120,6 @@
         next(new ApiError(500, "the server occurred an error"));
       }
     };
-
     exports.deletePackage = async (req, res, next) => {
       try {
         var deletedItem = await Package.findByIdAndDelete(req.params.id);
@@ -136,3 +133,21 @@
         next(new ApiError(500, "the server occurred an error"));
       }
     };
+
+
+    exports.topPackags=async(req,res,next)=>{
+      try{
+        const top=await Package.find().limit(4)
+        if(!top){
+          new ApiError(404,'the top package not found')
+        }else{
+          res.json({
+            statusCode: 200,
+            message: "you have successfully package top",
+            data: top,
+          });
+        }
+      }catch(err){
+      new ApiError(500, err.message)
+      }
+    }

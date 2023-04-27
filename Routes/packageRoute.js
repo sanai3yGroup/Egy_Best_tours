@@ -6,7 +6,8 @@ const{getPackage,
     deletePackage,
     updatePackage,
     createPackage,
-    getPackagesSerach
+    getPackagesSerach,
+    topPackags
 }=require('../Services/packageService');
 // get all packages 
 router.get('/',getAllPackages);
@@ -20,6 +21,7 @@ router.get('/serach/:text',getPackagesSerach);
 // delete pacakge 
 router.delete('/:id',deletePackage)
 
+router.get('/Api/topPackags',topPackags)
 
 
 
