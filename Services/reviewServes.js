@@ -9,7 +9,7 @@ exports.createReview = async (req, res, next) => {
     const packageId = await Package.findByIdAndUpdate(
       { _id: review.packageId },
       {
-        $push: { reviewes: review._id },
+        $push: { reviewes: review},
       }
     );
     res.json({

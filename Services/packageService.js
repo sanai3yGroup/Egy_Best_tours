@@ -26,9 +26,9 @@
       try {
         const id = req.params.id;
         const package = await Package.findById(id)
+        // .populate("reviewes")
           .populate("location")
-          .populate("category");
-        // .populate('reviewes')
+          .populate("category")
         if (!package) return next(new ApiError(404, "THE Package IS NOT FOUND"));
         res.json({
           statusCode: 200,
@@ -46,9 +46,10 @@
         const limit = 15;
         const skip = (pageNumber - 1) * limit;
         const packages = await Package.find()
-          .populate("location")
-          .populate("category")
-          // .populate('reviewes')
+          // .populate("location")
+          // .populate("category")
+          .populate('reviewes')
+          // populate({ path: 'fans', select: 'name' })
           .skip(skip)
           .limit(limit);
         const numOfPage = Math.ceil((await Package.find().count()) / limit);

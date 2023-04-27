@@ -21,6 +21,7 @@ exports.getMails = async (req, res, next) => {
     try{
       const data= req.body;
         const mails= await Mail.find();
+        // console.log(mails);
         if(!mails ) return next(ApiError(400,'error not found mails'));
         mails.map((mail) =>{
           sendMessageTouser(mail.email,data);

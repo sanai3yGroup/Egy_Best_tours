@@ -1,28 +1,4 @@
-//#region
-
-const nodemailer = require("nodemailer");
-require("dotenv").config();
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  service: "gmail",
-
-  auth: {
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD,
-  },
-});
-//  console.log(process.env.MAIL_PASSWORD);
-
-
-function sendMessageTouser(email,data) {
-console.log(data);
-  const mailOption = {
-    from: "egyptbesttours1@gmail.com",
-    to: email,
-    subject: "Egy best Tours",
-    html:`<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -103,7 +79,7 @@ console.log(data);
             }
             .listicon{
                 display: flex;
-              
+                flex-wrap: nowrap;
                 justify-content: space-between;
                 margin: 20px;
                 width: 150px
@@ -143,7 +119,7 @@ console.log(data);
     <body>
         <section class="parent">
             <div class="img">
-                <img src=${data.images[0].img} alt="">
+                <img src="/imges//egypt (2).jpg" alt="">
             </div>
             <div class="text">
                 <div class="intro"><p>"Dear valued customer,</p></div>
@@ -186,16 +162,4 @@ console.log(data);
             </div>
         </section>
     </body>
-    </html>`,
-  };
-  transporter.sendMail(mailOption, function (err, result) {
-    if (err) {
-  return false;
-    } else {
-    return true;
-    }
-  });
-}
-
-module.exports = sendMessageTouser;
-//#endregion
+    </html>
