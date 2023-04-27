@@ -25,6 +25,7 @@ exports.createBlog = async (req, res, next) => {
     });
   } catch (err) {
     next(new ApiError(500, err));
+    
   }
 };
 
