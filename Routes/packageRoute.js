@@ -7,17 +7,18 @@ const{getPackage,
     updatePackage,
     createPackage,
     getPackagesSerach,
-    topPackags
+    topPackags,getFilterPackages
 }=require('../Services/packageService');
 // get all packages 
 router.get('/',getAllPackages);
 // get user by id
-router.get('/:id',getPackage);
+router.get('get/:id',getPackage);
 // createPackage
 router.post('/create',upload.array('image'),createPackage);
 // updatePackage
 router.put('/:id',updatePackage);
 router.get('/serach/:text',getPackagesSerach);
+router.get('/filter',getFilterPackages);
 // delete pacakge 
 router.delete('/:id',deletePackage)
 
