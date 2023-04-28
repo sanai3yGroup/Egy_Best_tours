@@ -39,6 +39,7 @@ exports.getLocation=async(req,res,next)=>
 exports.getAllLocation=async(req,res,next)=>
 {
   try{
+    // console.log("test");
     const pageNumber =req.query.pageNumber 
     if(pageNumber){
       const limit = 15;
