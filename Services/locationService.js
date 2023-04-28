@@ -39,19 +39,29 @@ exports.getLocation=async(req,res,next)=>
 exports.getAllLocation=async(req,res,next)=>
 {
   try{
-    const pageNumber =req.query.pageNumber || 1;
-    const limit = 15;
-    const skip = (pageNumber - 1) * limit;
-    const locations = await Location.find().skip(skip).limit(limit);
-   const numOfPage = Math.ceil( (await Location.find().count())/ limit );
-    if (locations.length <= 0)
-      return next(new ApiError(404, "not found any trips"));
-    res.json({
-      statusCode: 200,
-      message: "you have all locations successfully",
-      numOfPage,
-      data: locations,
-    });
+    const pageNumber =req.query.pageNumber 
+    if(pageNumber){
+      const limit = 15;
+      const skip = (pageNumber - 1) * limit;
+      const locations = await Location.find().skip(skip).limit(limit);
+     const numOfPage = Math.ceil( (await Location.find().count())/ limit );
+      if (locations.length <= 0)
+        return next(new ApiError(404, "not found any trips"));
+      res.json({
+        statusCode: 200,
+        message: "you have all locations successfully",
+        numOfPage,
+        data: locations,
+      });
+    }else{
+      const locations = await Location.find()
+      res.json({
+        statusCode: 200,
+        message: "you have all locations successfully",
+        data: locations,
+      });
+    }
+ 
   }
   catch(err)
   {
