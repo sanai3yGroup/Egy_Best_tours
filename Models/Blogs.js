@@ -3,6 +3,9 @@ const blogsSchema=mongoose.Schema({
 title:{
     type:String,
 },
+cover:{
+    type:String,
+},
 discription:{
     type:String,
 },
@@ -14,7 +17,10 @@ content:{
         type:String
     },
     text:{
-        type:String,
+        type:Array,
+    },
+    img:{
+        type:String
     }
  }],
  images:{

@@ -3,20 +3,20 @@ const ApiError = require("../Utilites/ApiError");
 const { uploadImage } = require("../configuration/configCloudinary");
 exports.createBlog = async (req, res, next) => {
   try {
-    const files = req.files;
-    let img;
-    let arrImages = [];
-    let index = 0;
-    for (let file of files) {
-      index++;
-      img = await uploadImage(file.path, index);
-      arrImages.push(img);
-    }
+    // const files = req.files;
+    // let img;
+    // let arrImages = [];
+    // let index = 0;
+    // for (let file of files) {
+    //   index++;
+    //   img = await uploadImage(file.path, index);
+    //   arrImages.push(img);
+    // }
     const pragraph = req.body.pragraph.map((i) => JSON.parse(i));
     const blog = await Blog.create({
       ...req.body,
       pragraph,
-      images: arrImages,
+      // images: arrImages,
     });
     res.json({
       statusCode: 200,

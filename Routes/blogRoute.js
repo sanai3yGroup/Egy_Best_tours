@@ -14,7 +14,7 @@ router.get('/:pageNumber',getAllBlog);
 
 router.get(':id',getBlog);
 
-router.post('/create',upload.array('image'),createBlog);
+router.post('/create',createBlog);
 
 router.put('/:id',updateBlog);
 
