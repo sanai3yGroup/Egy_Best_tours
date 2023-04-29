@@ -177,7 +177,7 @@
           .skip(skip)
           .limit(limit);
         }
-        const numOfPage = Math.ceil((await Package.find().count()) / limit);
+        const numOfPage = Math.ceil(packages.length / limit);
         if (packages.length <= 0)
           return next(new ApiError(404, "not found any trips"));
         res.json({
