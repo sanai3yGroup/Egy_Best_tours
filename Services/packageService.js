@@ -154,15 +154,29 @@
 
     exports.getFilterPackages = async (req, res, next) => {
       try {
-        const {pageNumber=1,...query}=req.query
-       // console.log(query);
+        const {pageNumber=1,sort,minPrice,maxPrice,...query}=req.query
+        let  packages;
         const limit = 10;
         const skip = (pageNumber - 1) * limit;
-        const packages = await Package.find(query)
+        if(minPrice)
+        {
+          let priceFliter={$and:[{price:{$gte:minPrice}},{price:{$lte:maxPrice}}]}
+          packages = await Package.find({...priceFliter,...query})
           .populate("location")
           .populate("category")
+          .sort({"price":sort})
+          .skip(skip)
+          .limit(limit)
+        }
+        else
+        {
+        packages = await Package.find(query)
+          .populate("location")
+          .populate("category")
+          .sort({"price":sort})
           .skip(skip)
           .limit(limit);
+        }
         const numOfPage = Math.ceil((await Package.find().count()) / limit);
         if (packages.length <= 0)
           return next(new ApiError(404, "not found any trips"));
