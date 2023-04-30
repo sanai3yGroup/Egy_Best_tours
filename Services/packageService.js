@@ -158,6 +158,7 @@
         let  packages;
         const limit = 10;
         const skip = (pageNumber - 1) * limit;
+        let numOfPage;
         if(minPrice)
         {
           let priceFliter={$and:[{price:{$gte:minPrice}},{price:{$lte:maxPrice}}]}
@@ -167,6 +168,7 @@
           .sort({"price":sort})
           .skip(skip)
           .limit(limit)
+          numOfPage = Math.ceil((await Package.find({...priceFliter,...query}).count()) / limit);
         }
         else
         {
@@ -176,9 +178,9 @@
           .sort({"price":sort})
           .skip(skip)
           .limit(limit);
+          numOfPage = Math.ceil((await Package.find(query).count()) / limit);
         }
        
-        const numOfPage = Math.ceil((await Package.find(query).count()) / limit);
         if (packages.length <= 0)
           return next(new ApiError(404, "not found any trips"));
         res.json({
