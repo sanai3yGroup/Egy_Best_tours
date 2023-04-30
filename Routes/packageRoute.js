@@ -12,7 +12,7 @@ const{getPackage,
 // get all packages 
 router.get('/',getAllPackages);
 // get user by id
-router.get('get/:id',getPackage);
+router.get('/get/:id',getPackage);
 // createPackage
 router.post('/create',upload.array('image'),createPackage);
 // updatePackage

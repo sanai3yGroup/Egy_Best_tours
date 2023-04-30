@@ -20,7 +20,9 @@ const packageSechema=mongoose.Schema({
         category:{ type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
         pick_drop:String,
         availablitiy:String,
+        totalrate:Number,
         reviewes:[{type:Object}]
+
 })
 
 packageSechema.index({'$**': 'text'});
