@@ -177,7 +177,7 @@
           .skip(skip)
           .limit(limit);
         }
-        const numOfPage = Math.ceil(packages.length / limit);
+       
         const numOfPage = Math.ceil((await Package.find(query).count()) / limit);
         if (packages.length <= 0)
           return next(new ApiError(404, "not found any trips"));
@@ -187,7 +187,7 @@
           message: "you have all packages successfully",
           data: packages,
         });
-      }} catch (err) {
+      } catch (err) {
         next(new ApiError(500, err));
       }
     }
