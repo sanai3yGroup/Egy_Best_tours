@@ -45,10 +45,24 @@
         const pageNumber = req.query.pageNumber || 1;
         const limit = 15;
         const skip = (pageNumber - 1) * limit;
-        const packages = await Package.find()
-          // .populate("location")
-          // .populate("category")
-          .populate('reviewes')
+        const packages = await Package.find({},{avg:{$avg:'$reviewes.rate'}
+          ,highlights:1
+          ,title:1
+          ,descrption:1
+          ,days:1
+          ,images:1
+          ,inclusions:1
+          ,exclusions:1
+          ,hotelActivities:1
+          ,price:1
+          ,pick_drop:1
+          ,availablitiy:1
+          ,totalrate:1
+          ,reviewes:1
+        })
+          .populate("location")
+          .populate("category")
+          // .populate('reviewes')
           // populate({ path: 'fans', select: 'name' })
           .skip(skip)
           .limit(limit);
