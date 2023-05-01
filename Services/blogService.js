@@ -12,10 +12,10 @@ exports.createBlog = async (req, res, next) => {
     //   img = await uploadImage(file.path, index);
     //   arrImages.push(img);
     // }
-    // const pragraph = req.body.pragraph.map((i) => JSON.parse(i));
+    const content = req.body.pragraph.map((i) =>i.header );
     const blog = await Blog.create({
       ...req.body,
-      // pragraph,
+      content,
       // images: arrImages,
     });
     res.json({

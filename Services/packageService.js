@@ -63,7 +63,7 @@
           .populate("location")
           .populate("category")
           // .populate('reviewes')
-          // populate({ path: 'fans', select: 'name' })
+         
           .skip(skip)
           .limit(limit);
         const numOfPage = Math.ceil((await Package.find().count()) / limit);
