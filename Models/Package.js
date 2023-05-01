@@ -21,7 +21,15 @@ const packageSechema=mongoose.Schema({
         pick_drop:String,
         availablitiy:String,
         totalrate:Number,
-        reviewes:[{type:Object}]
+        reviewes:[{type:Object}],
+        maincategory:
+        {
+            type:String,
+            enum:{
+                values:["Egypt tour","Day tour",'Nile cruises','Shore excursions'],
+                message:'{VALUE} is not supported',
+            }
+        }
 
 })
 

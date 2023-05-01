@@ -4,6 +4,14 @@ const CategorySchema= mongoose.Schema({
         type:String,
         upperCase:true,
         trim:true,
+    },
+    maincategory:
+    {
+        type:String,
+        enum:{
+            values:["Egypt tour","Day tour",'Nile cruises','Shore excursions'],
+            message:'{VALUE} is not supported',
+        }
     }
 
 })

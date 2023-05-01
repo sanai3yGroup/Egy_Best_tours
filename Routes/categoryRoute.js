@@ -3,6 +3,7 @@ const router= require('express').Router();
 
 const{getAllCategory,
     getCategory,
+    getCategorybyMain,
     createCategory,
     updateCategory,
     deleteCategory,
@@ -12,6 +13,7 @@ const{getAllCategory,
 router.get('/',getAllCategory);
 // get location by id
 router.get('/:id',getCategory);
+router.get('/getbymain/:main',getCategorybyMain);
 // create location
 router.post('/create',createCategory);
 // update location

@@ -29,6 +29,20 @@ exports.getCategory = async (req, res, next) => {
     next(new ApiError(500, "the server returned an error"));
   }
 };
+exports.getCategorybyMain = async (req, res, next) => {
+  try {
+    const main = req.params.main;
+    const category = await Category.find({maincategory:main});
+    if (!category) return next(new ApiError(404, "THE Packages IS NOT FOUND"));
+    res.json({
+      statusCode: 200,
+      message: "you get a category by id",
+      data: category,
+    });
+  } catch (err) {
+    next(new ApiError(500, "the server returned an error"));
+  }
+};
 exports.getAllCategory = async (req, res, next) => {
   try {
     const pageNumber = req.query.pageNumber ;
