@@ -12,10 +12,10 @@ exports.createBlog = async (req, res, next) => {
     //   img = await uploadImage(file.path, index);
     //   arrImages.push(img);
     // }
-    const pragraph = req.body.pragraph.map((i) => JSON.parse(i));
+    // const pragraph = req.body.pragraph.map((i) => JSON.parse(i));
     const blog = await Blog.create({
       ...req.body,
-      pragraph,
+      // pragraph,
       // images: arrImages,
     });
     res.json({
@@ -24,7 +24,7 @@ exports.createBlog = async (req, res, next) => {
       data: blog,
     });
   } catch (err) {
-    next(new ApiError(500, err));
+    next(new ApiError(500, err.message));
     
   }
 };

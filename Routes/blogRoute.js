@@ -12,7 +12,7 @@ const {
 
 router.get('/:pageNumber',getAllBlog);
 
-router.get(':id',getBlog);
+router.get('/blogId/:id',getBlog);
 
 router.post('/create',createBlog);
 
