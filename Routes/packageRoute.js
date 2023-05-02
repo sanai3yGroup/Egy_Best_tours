@@ -17,7 +17,9 @@ router.get('/get/:id',getPackage);
 router.post('/create',upload.array('image'),createPackage);
 // updatePackage
 router.put('/:id',updatePackage);
+
 router.get('/serach/:text',getPackagesSerach);
+
 router.get('/filter',getFilterPackages);
 // delete pacakge 
 router.delete('/:id',deletePackage)

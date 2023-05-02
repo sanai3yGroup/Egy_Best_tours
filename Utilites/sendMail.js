@@ -151,15 +151,14 @@ console.log(data);
                 <p>getaway, an adventurous having trip, or a cultural oy tour we have something for everyone</p>
                 <p>Our new packages include:</p>
                 <ul>
-                    <li>Cairo Package: Visit The Capitol of Egypt and it's different Mosques with Beautiful style and Architecture</li>
-                    <li>Alesandria Package: Don't miss the Chance of exploring the Places that will make you fall in love with this city</li>
-                    <li>Dahab Package: Enjoy The simple to style and The Peace of Mind in This beautiful City</li>
+                    <li>${data.descrption}</li>
+                    
                 </ul>
             </div>
             <div class="contact">
                 <div class="text">
                     <p>To learn more about the packages and to book your next venture, please visit our website of contact our customer support team at</p>
-                    <p>+20 100 400 6407</p>
+                    <p>+20 1004808407</p>
     
                     <div class="icon">
                         <p>or you can Follow us on</p>
