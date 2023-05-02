@@ -47,7 +47,7 @@ exports.getAllCategory = async (req, res, next) => {
   try {
     const pageNumber = req.query.pageNumber ;
     if (pageNumber) {
-      const limit = 1;
+      const limit = 10;
       const skip = (pageNumber - 1) * limit;
       const categories = await Category.find().skip(skip).limit(limit);
       const numOfPage = Math.ceil((await Category.find().count()) / limit);

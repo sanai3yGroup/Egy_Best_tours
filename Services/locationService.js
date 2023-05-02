@@ -42,7 +42,7 @@ exports.getAllLocation=async(req,res,next)=>
     // console.log("test");
     const pageNumber =req.query.pageNumber 
     if(pageNumber){
-      const limit = 15;
+      const limit = 10;
       const skip = (pageNumber - 1) * limit;
       const locations = await Location.find().skip(skip).limit(limit);
      const numOfPage = Math.ceil( (await Location.find().count())/ limit );
