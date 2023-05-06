@@ -14,7 +14,7 @@ router.get('/',getAllPackages);
 // get user by id
 router.get('/get/:id',getPackage);
 // createPackage
-router.post('/create',upload.array('image'),createPackage);
+router.post('/create',createPackage);
 // updatePackage
 router.put('/:id',updatePackage);
 
