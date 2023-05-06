@@ -46,8 +46,8 @@ exports.getBlog = async (req, res, next) => {
 
 exports.getAllBlog = async (req, res, next) => {
   try {
-    const pageNumber = req.query.pageNumber || 1;
-    const limit = 15;
+    const pageNumber = req.params.pageNumber || 1;
+    const limit = 10;
     const skip = (pageNumber - 1) * limit;
     const blogs = await Blog.find().skip(skip).limit(limit);
     const numOfPage = Math.ceil((await Blog.find().count()) / limit);
