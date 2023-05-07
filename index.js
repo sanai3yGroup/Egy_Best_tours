@@ -5,7 +5,7 @@ const app = express();
 var http = require('http');
 const server=http.createServer(app);
 const cors = require('cors');
-var port = normalizePort(process.env.PORT || '7000');
+var port = normalizePort(process.env.PORT || '9000');
 const conect =require('./configuration/conctionDb');
 const glopalError=require('./middlewares/errorMiddlare');
 
@@ -46,16 +46,16 @@ const tripRoute= require('./Routes/tripRoute')
 const blogRoute= require('./Routes/blogRoute')
 const reviewRouter= require('./Routes/reviewRoute')
 
-app.use('/user',userRuote);
-app.use('/mail',mailRoute);
-app.use('/trips',tripsRoute);
-app.use('/package',packageRoute);
-app.use('/category',categoryRoute);
-app.use('/location',locationRoute);
-app.use('/contact',contactRoute);
-app.use('/trip',tripRoute);
-app.use('/blog',blogRoute);
-app.use('/review',reviewRouter);
+app.use('/api/user',userRuote);
+app.use('/api/mail',mailRoute);
+app.use('/api/trips',tripsRoute);
+app.use('/api/package',packageRoute);
+app.use('/api/category',categoryRoute);
+app.use('/api/location',locationRoute);
+app.use('/api/contact',contactRoute);
+app.use('/api/trip',tripRoute);
+app.use('/api/blog',blogRoute);
+app.use('/api/review',reviewRouter);
 
 // hundel glopal error un project ////
 app.all((req,res,next)=>{
