@@ -4,14 +4,7 @@
 
     exports.createPackage = async (req, res, next) => {
       try {
-        let imageUrl = [];
-        const files = req.files;
-        for (let file of files) {
-          let img = await uploadImage(file.path);
-          imageUrl.push(img);
-        }
-        // console.log(imageUrl);
-        const package = await Package.create({ ...req.body, images: imageUrl });
+        const package = await Package.create(req.body);
         res.json({
           statusCode: 200,
           message: "you create a Package",
